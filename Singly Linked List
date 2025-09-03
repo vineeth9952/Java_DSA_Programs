@@ -1,0 +1,143 @@
+
+class Node 
+{
+    int data;
+    Node next;
+    Node(int data)
+    {
+        this.data = data;
+        this.next = null;
+    }
+}
+public class SinglyLinkedList
+{
+    Node Head;
+    SinglyLinkedList()
+    {
+        this.Head = null;
+    }
+    public void Insert_at_End(int data)
+    {
+        Node newnode = new Node(data);
+        if (this.Head == null)
+        {
+            this.Head = newnode;
+        }
+        else 
+        {
+            Node temp = this.Head ;
+            while(temp.next!=null)
+            {
+                temp = temp.next;
+            }
+            temp.next = newnode;
+        }
+    }
+    public void Insert_at_Begin(int data)
+    {
+        Node newnode = new Node(data);
+        if (this.Head == null)
+        {
+            this.Head = newnode;
+        }
+        else 
+        {
+            newnode.next = this.Head;
+            this.Head = newnode;
+        }
+    }
+    public void Insert_at_Position(int data, int pos)
+    {
+        Node newnode = new Node(data);
+        if (pos==1)
+        {
+            newnode.next = this.Head;
+            this.Head = newnode;
+        }
+        else 
+        {
+            Node temp = this.Head;
+            while(pos-2 > 0 && temp.next!=null)
+            {
+                temp = temp.next ;
+                pos--;
+            }
+            newnode.next = temp.next ;
+            temp.next = newnode;
+        }
+    }
+    public void Delete_at_End()
+    {
+        if (this.Head==null)
+        {
+            System.out.print("Empty List");
+        }
+        else if(this.Head.next == null)
+        {
+            this.Head = null;
+        }
+        else 
+        {
+            Node temp = this.Head;
+            while(temp.next.next != null)
+            {
+                temp = temp.next;
+            }
+            temp.next = null;
+        }
+    }
+    public void Delete_at_Begin()
+    {
+        if (this.Head==null)
+        {
+            System.out.print("Empty List");
+        }
+        else 
+        {
+            this.Head = this.Head.next;
+        }
+    }
+    public void Delete_at_Position(int pos)
+    {
+        if (pos==1)
+        {
+            this.Head = this.Head.next ;
+        }
+        else 
+        {
+            Node temp = this.Head;
+            while(pos-2 > 0 && temp.next!=null)
+            {
+                temp = temp.next ;
+                pos--;
+            }
+            if (temp.next!= null)
+            {
+                temp.next = temp.next.next;
+            }
+        }
+    }
+    public void Display()
+    {
+        Node temp = this.Head ;
+        System.out.println(this.Head);
+        while(temp!=null)
+        {
+            System.out.println(temp+" "+temp.data+" "+temp.next);
+            temp = temp.next;
+        }
+    }
+	public static void main(String[] args) 
+	{
+		SinglyLinkedList sll = new SinglyLinkedList();
+		sll.Insert_at_End(1);
+		sll.Insert_at_End(2);
+		sll.Insert_at_End(3);
+		sll.Insert_at_End(4);
+		
+		sll.Display();
+		sll.Delete_at_Position(5);
+		sll.Display();
+		
+	}
+}
