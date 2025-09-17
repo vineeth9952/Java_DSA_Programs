@@ -1,0 +1,76 @@
+class Node 
+{
+    int data ;
+    Node next;
+    Node(int data)
+    {
+        this.data = data ;
+        this.next = null ;
+    }
+}
+public class STACK
+{
+    Node TOP ;
+    int Count_stack;
+    int size = 3;
+    STACK()
+    {
+        this.TOP = null;
+        this.Count_stack = 0;
+    }
+    public void PUSH(int data)
+    {
+        Node newnode = new Node(data);
+        if (Count_stack>=size)
+        {
+            System.out.println("Stack Overflow");
+        }
+        else 
+        {
+            newnode.next = this.TOP ;
+            this.TOP = newnode ;
+            Count_stack++;
+        }
+    }
+    public void POP()
+    {
+        if(this.TOP==null && Count_stack==0)
+        {
+            System.out.println("Stack Underflow");
+        }
+        else 
+        {
+            this.TOP = this.TOP.next ;
+            Count_stack--;
+        }
+    }
+    public void PEEK()
+    {
+        if (this.TOP==null && Count_stack==0)
+        {
+            System.out.println("Stack is Empty");
+        }
+        else 
+        {
+            System.out.println(this.TOP.data);
+        }
+    }
+    public void Display()
+    {
+        Node temp = this.TOP ;
+        while(temp!=null)
+        {
+            System.out.println(temp+" "+temp.data+" "+temp.next);
+            temp = temp.next ;
+        }
+    }
+	public static void main(String[] args) 
+	{
+		STACK stk = new STACK();
+		
+		stk.PUSH(1); stk.PUSH(2); stk.PUSH(3); 
+		stk.POP(); stk.POP();stk.POP();
+		stk.PEEK();
+// 		stk.Display();
+	}
+}
