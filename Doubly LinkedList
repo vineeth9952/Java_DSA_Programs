@@ -1,0 +1,157 @@
+class Node 
+{
+    int data;
+    Node next, prev;
+    Node(int data)
+    {
+        this.data = data ;
+        this.next = null ;
+        this.prev = null ;
+    }
+}
+public class DoublyLinkedList
+{
+    Node Head ;
+    Node Tail ;
+    DoublyLinkedList()
+    {
+        this.Head = null ;
+        this.Tail = null ;
+    }
+    public void Insert_At_End(int data)
+    {
+        Node newnode = new Node(data);
+        
+        if(this.Head == null && this.Tail == null) 
+        {
+            this.Head = newnode ;
+            this.Tail = newnode ;
+        }
+        else
+        {
+            newnode.prev = Tail ;
+            Tail.next = newnode ;
+            Tail = newnode;
+        }
+    }
+    public void Insert_At_Begin(int data)
+    {
+        Node newnode = new Node(data);
+        
+        if(this.Head == null && this.Tail == null) 
+        {
+            this.Head = newnode ;
+            this.Tail = newnode ;
+        }
+        else
+        {
+            newnode.next = this.Head ;
+            this.Head.prev = newnode ;
+            this.Head = newnode ;
+        }
+    }
+    public void Insert_At_Position(int data, int pos)
+    {
+        Node newnode = new Node(data);
+        if (pos==1)
+        {
+            newnode.next = this.Head;
+            this.Head.prev = newnode;
+            this.Head = newnode;
+        }
+        else 
+        {
+            Node temp = this.Head ;
+            while(pos-2 >0 && temp.next != null)
+            {
+                temp = temp.next ;
+                pos--;
+            }
+            newnode.prev = temp ;
+            newnode.next = temp.next ;
+            if (temp.next != null)
+                temp.next.prev = newnode;
+            temp.next = newnode ;
+        }
+    }
+    public void Delete_at_End()
+    {
+        if (this.Head == null && this.Tail == null)
+        {
+            System.out.println("List is Empty");
+        }
+        else if (this.Head.next == null)
+        {
+            this.Head = null;
+            this.Tail = null;
+        }
+        else 
+        {
+            this.Tail = this.Tail.prev ;
+            this.Tail.next = null ;
+        }
+    }
+    public void Delete_at_Begin()
+    {
+        if (this.Head == null && this.Tail == null)
+        {
+            System.out.println("List is Empty");
+        }
+        else if (this.Head.next == null)
+        {
+            this.Head = null;
+            this.Tail = null;
+        }
+        else 
+        {
+            this.Head = this.Head.next ;
+            this.Head.prev = null;
+        }
+    }
+    public void Delete_at_Position(int pos)
+    {
+        if (this.Head == null && this.Tail == null)
+        {
+            System.out.println("List is Empty");
+        }
+        else if (pos==1)
+        {
+            this.Head = this.Head.next ;
+            this.Head.prev = null;
+        }
+        else 
+        {
+            Node temp = this.Head;
+            while(pos-2 > 0)
+            {
+                temp = temp.next ;
+                pos--;
+            }
+            
+            temp.next = temp.next.next ;
+            temp.next.prev = temp;
+        }
+    }
+    public void Display()
+    {
+        Node temp = this.Head ;
+        System.out.println(this.Head+" "+this.Tail);
+        while(temp != null)
+        {
+            System.out.println(temp.prev+" "+temp+" " +temp.data+" "+temp.next);
+            temp=temp.next ;
+        }
+    }
+	public static void main(String[] args) 
+	{
+		DoublyLinkedList dll = new DoublyLinkedList();
+		
+// 		dll.Insert_At_End(1);
+// 		dll.Insert_At_End(2);
+// 		dll.Insert_At_End(3);
+// 		dll.Insert_At_End(4);
+		
+		dll.Delete_at_Begin();
+		dll.Display();
+	}
+}
