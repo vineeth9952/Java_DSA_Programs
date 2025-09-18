@@ -1,0 +1,68 @@
+class Node 
+{
+    int data;
+    Node next;
+    Node(int data)
+    {
+        this.data = data ;
+        this.next = null ;
+    }
+}
+public class QUEUE
+{
+    Node Front;
+    Node Rear;
+    QUEUE()
+    {
+        this.Front = null ;
+        this.Rear = null ;
+    }
+    public void Enqueue(int data)
+    {
+        Node newnode = new Node(data);
+        
+        if (this.Front==null && this.Rear==null)
+        {
+            this.Front = newnode;
+            this.Rear = newnode;
+        }
+        else 
+        {
+            this.Rear.next = newnode;
+            this.Rear = newnode;
+        }
+    }
+    public void Dequeue()
+    {
+        if (this.Front==null && this.Rear==null)
+        {
+            System.out.println("Queue is Empty");
+        }
+        else if (this.Front.next == null)
+        {
+            this.Front = null; 
+            this.Rear = null;
+        }
+        else 
+        {
+            this.Front = this.Front.next ;
+        }
+        
+    }
+    public void Display()
+    {
+        Node temp = this.Front;
+        while(temp != null)
+        {
+            System.out.print(temp.data+" ");
+            temp = temp.next ;
+        }
+    }
+	public static void main(String[] args) 
+	{
+		QUEUE q = new QUEUE();
+		q.Enqueue(1); q.Enqueue(2); q.Enqueue(3);
+		q.Dequeue(); q.Dequeue(); q.Dequeue(); q.Dequeue();
+		q.Display();
+	}
+}
