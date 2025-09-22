@@ -71,14 +71,14 @@ public class CircularDoublyLinkedList
         else
         {
             Node temp = this.Head ;
-            while(pos-2 > 0 && temp.next!=null)
+            while(pos-2 > 0 && temp.next!=this.Head)
             {
                 temp = temp.next ;
                 pos--;
             }
             newnode.prev = temp;
             newnode.next = temp.next;
-            if(temp.next != null)
+            if(temp.next != this.Head)
                 temp.next.prev = newnode ;
             temp.next = newnode ;
             
@@ -135,7 +135,7 @@ public class CircularDoublyLinkedList
         else 
         {
             Node temp = this.Head ;
-            while(pos-2 > 0 && temp.next!=null)
+            while(pos-2 > 0 && temp.next!=this.Head)
             {
                 temp = temp.next ;
                 pos--;
