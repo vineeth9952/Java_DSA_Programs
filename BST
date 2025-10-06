@@ -1,0 +1,123 @@
+
+import java.util.* ;
+class Node 
+{
+    int data;
+    Node left;
+    Node right;
+    Node (int data)
+    {
+        this.data = data;
+        this.left = null;
+        this.right = null;
+    }
+}
+public class BST
+{
+    Node root ;
+    BST()
+    {
+        this.root = null;
+    }
+    public Node Insertion(Node root, int data)
+    {
+        if(root==null)
+            return new Node(data);
+        
+        if(data > root.data)
+            root.right = Insertion(root.right, data);
+        if(data < root.data)
+            root.left = Insertion(root.left, data);
+            
+        return root;
+    }
+    public Node Search(Node root, int data)
+    {
+        if(root==null || root.data == data)
+            return root;
+        if(data > root.data)
+            return Search(root.right, data);
+        if (data < root.data)
+            return Search(root.left, data);
+        
+        return root;    
+    }
+    public Node Delete(Node root, int data)
+    {
+        if(root==null)
+        {
+            return root;
+        }
+        if (data < root.data)
+            root.left = Delete(root.left, data);
+        else if (data > root.data)
+            root.right = Delete(root.right, data);
+        else 
+        {
+            if (root.left == null)
+            {
+                return root.right;
+            }
+            else if (root.right == null)
+            {
+                return root.left;
+            }
+            
+            root.data = minvalue(root.right);
+            
+            root.right = Delete(root.right, root.data);
+        }
+        return root;
+    }
+    public int minvalue(Node root)
+    {
+        int min = root.data;
+        while(root.left!=null)
+        {
+            root = root.left;
+            min = root.data;
+        }
+        return min;
+    }
+    public int SumofNodes(Node root)
+    {
+        if (root==null)
+            return 0;
+        
+        return root.data + SumofNodes(root.left) + SumofNodes(root.right);
+    }
+    public int HeightofTree(Node root)
+    {
+        if (root==null)
+            return -1 ;
+        int leftheight  = HeightofTree(root.left); 
+        int Rightheight = HeightofTree(root.right);
+        
+        return Math.max(leftheight, Rightheight) + 1;
+    }
+    public void PreOrderTraversal(Node root)
+    {
+        if (root==null)
+            return;
+        
+        System.out.print(root.data+" ");
+        PreOrderTraversal(root.left);
+        PreOrderTraversal(root.right);
+    }
+   
+	public static void main(String[] args) 
+	{
+		BST bt = new BST();
+		Scanner sc = new Scanner(System.in);
+		
+		int input = sc.nextInt();
+		while(input!=-1)
+		{
+		    bt.root = bt.Insertion(bt.root,input);
+		    input = sc.nextInt();
+		}
+		
+		System.out.println(bt.HeightofTree(bt.root));
+		   
+	}
+}
