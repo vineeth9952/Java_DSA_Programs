@@ -1,0 +1,57 @@
+class Node
+{
+	int data;
+	Node left, right;
+	Node(int data)
+	{
+		this.data = data ;
+		this.left = null ;
+		this.right = null;
+	}
+}
+public class Tree
+{
+	Node root;
+    void PreOrderTraversal(Node root)
+    {
+        if (root == null)
+            return;
+        System.out.print(root.data+" ");
+        PreOrderTraversal(root.left);
+        PreOrderTraversal(root.right);
+        
+    }
+    void InOrderTraversal(Node root)
+    {
+        if (root == null)
+            return;
+    
+        InOrderTraversal(root.left);
+        System.out.print(root.data+" ");
+        InOrderTraversal(root.right);
+        
+    }
+	public static void main(String[] args)
+	{
+		Tree t1 = new Tree();
+
+		t1.root = new Node(4);
+		t1.root.left = new Node(2);
+        t1.root.left.left = new Node(1);
+        t1.root.left.right = new Node(3);
+        
+        t1.root.right = new Node(6);
+        t1.root.right.left = new Node(5);
+        t1.root.right.right = new Node(7);
+        
+        System.out.print("\nPreOrder Traversal :- ");
+        t1.PreOrderTraversal(t1.root);
+        
+        System.out.print("\nInOrder Traversal :- ");
+        t1.InOrderTraversal(t1.root);
+        
+        System.out.print("\nPostOrder Traversal :- ");
+        // t1.PostOrderTraversal(t1.root);
+        
+	}
+}
