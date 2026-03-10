@@ -1,14 +1,15 @@
-class Node 
+import java.util.* ;
+class Node
 {
-    int data;
-    Node prev;
-    Node next;
-    Node(int data)
-    {
-        this.data = data ;
-        this.prev = null ;
-        this.next = null ;
-    }
+	int data;
+	Node prev;
+	Node next;
+	Node(int data)
+	{
+		this.data = data;
+		this.prev = null;
+		this.next = null;
+	}
 }
 public class CircularDoublyLinkedList
 {
@@ -20,7 +21,7 @@ public class CircularDoublyLinkedList
         this.Head = null;
         this.Tail = null;
     }
-    public void Insert_at_End(int data)
+    public void Insert_At_End(int data)
     {
         Node newnode = new Node(data);
         if(this.Head==null && this.Tail==null)
@@ -38,7 +39,7 @@ public class CircularDoublyLinkedList
             this.Tail.next = this.Head;
         }
     }
-    public void Insert_at_Begin(int data)
+    public void Insert_At_Begin(int data)
     {
         Node newnode = new Node(data);
         if (this.Head == null && this.Tail == null)
@@ -56,7 +57,7 @@ public class CircularDoublyLinkedList
             this.Tail.next = this.Head;
         }
     }
-    public void Insert_at_Position(int data, int pos)
+    public void Insert_At_Position(int data, int pos)
     {
         Node newnode = new Node(data);
         if (pos==1)
@@ -84,7 +85,7 @@ public class CircularDoublyLinkedList
             
         }
     }
-    public void Delete_at_End()
+    public void Delete_At_End()
     {
         if (this.Head == null && this.Tail==null)
         {
@@ -102,7 +103,7 @@ public class CircularDoublyLinkedList
             this.Head.prev = this.Tail;
         }
     }
-    public void Delete_at_Begin()
+    public void Delete_At_Begin()
     {
         if (this.Head == null && this.Tail==null)
         {
@@ -120,7 +121,7 @@ public class CircularDoublyLinkedList
             this.Tail.next = this.Head;
         }
     }
-    public void Delete_at_Position(int pos)
+    public void Delete_At_Position(int pos)
     {
         if (this.Head == null && this.Tail==null)
         {
@@ -155,18 +156,78 @@ public class CircularDoublyLinkedList
         }
         System.out.println(temp.prev +" "+temp+"  "+temp.data+" "+temp.next);
     }
-	public static void main(String[] args) 
+	public static void main(String[] args)
 	{
-		CircularDoublyLinkedList dll = new CircularDoublyLinkedList();
-		
-		dll.Insert_at_End(1);
-		dll.Insert_at_End(2);
-		dll.Insert_at_End(3);
-		dll.Insert_at_End(4);
-		
-		dll.Delete_at_Begin();
-		dll.Display();
-		
-		
+		CircularDoublyLinkedList cdll = new CircularDoublyLinkedList();
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("**************** WELCOME ****************");
+		System.out.println("Enter 1 to Insert Element at End.  ");
+		System.out.println("Enter 2 to Insert Element at Begining. ");
+		System.out.println("Enter 3 to Insert Element at Position. ");
+		System.out.println("Enter 4 to Delete Element at End. ");
+		System.out.println("Enter 5 to Delete Element at Begining. ");
+		System.out.println("Enter 6 to Delete Element at Position. ");
+		System.out.println("Enter 7 to Display the LinledList. ");
+		System.out.println("Enter -1 to EXIT. ");
+
+		int data, ip, pos ;
+
+		while(true)
+		{
+			System.out.print("Enter Input :- ");
+			ip = sc.nextInt();
+			
+			if (ip == 1)
+			{
+				System.out.print("Enter value to Insert at End :- ");
+				data = sc.nextInt();
+				cdll.Insert_At_End(data);
+				System.out.println(data+" Inserted at End");
+			}
+			else if (ip == 2)
+			{
+				System.out.print("Enter value to Insert at Begining :- ");
+				data = sc.nextInt();
+				cdll.Insert_At_Begin(data);
+				System.out.println(data+" Inserted at Begining");
+			}
+			else if (ip == 3)
+			{
+				System.out.print("Enter value and Position to Insert :- ");
+				data = sc.nextInt();
+				pos = sc.nextInt();
+				cdll.Insert_At_Position(data, pos);
+				System.out.println(data+" Inserted at "+pos+" Position");
+			}
+			else if (ip == 4)
+			{
+				cdll.Delete_At_End();
+				System.out.println("value Deleted at End");
+			}
+			else if (ip == 5)
+			{
+				cdll.Delete_At_Begin();
+				System.out.println("value Deleted at Begin");
+			}
+			else if (ip == 6)
+			{
+				System.out.print("Enter Position to Delete :- ");
+				pos = sc.nextInt();
+				cdll.Delete_At_Position(pos);
+				System.out.println("value Deleted at "+pos+" Position");
+			}
+			else if (ip == 7)
+			{
+			    System.out.println("The LinkedList is --- ");
+				cdll.Display();
+			}
+			else if (ip == -1)
+			{
+				System.out.println("Program EXIT");
+				break;
+			}
+			
+		}
 	}
 }
