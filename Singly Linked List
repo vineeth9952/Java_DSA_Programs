@@ -1,4 +1,4 @@
-
+import java.util.* ;
 class Node 
 {
     int data;
@@ -16,7 +16,7 @@ public class SinglyLinkedList
     {
         this.Head = null;
     }
-    public void Insert_at_End(int data)
+    public void Insert_At_End(int data)
     {
         Node newnode = new Node(data);
         if (this.Head == null)
@@ -33,7 +33,7 @@ public class SinglyLinkedList
             temp.next = newnode;
         }
     }
-    public void Insert_at_Begin(int data)
+    public void Insert_At_Begin(int data)
     {
         Node newnode = new Node(data);
         if (this.Head == null)
@@ -46,7 +46,7 @@ public class SinglyLinkedList
             this.Head = newnode;
         }
     }
-    public void Insert_at_Position(int data, int pos)
+    public void Insert_At_Position(int data, int pos)
     {
         Node newnode = new Node(data);
         if (pos==1)
@@ -66,7 +66,7 @@ public class SinglyLinkedList
             temp.next = newnode;
         }
     }
-    public void Delete_at_End()
+    public void Delete_At_End()
     {
         if (this.Head==null)
         {
@@ -86,7 +86,7 @@ public class SinglyLinkedList
             temp.next = null;
         }
     }
-    public void Delete_at_Begin()
+    public void Delete_At_Begin()
     {
         if (this.Head==null)
         {
@@ -97,7 +97,7 @@ public class SinglyLinkedList
             this.Head = this.Head.next;
         }
     }
-    public void Delete_at_Position(int pos)
+    public void Delete_At_Position(int pos)
     {
         if (pos==1)
         {
@@ -127,17 +127,78 @@ public class SinglyLinkedList
             temp = temp.next;
         }
     }
-	public static void main(String[] args) 
+	public static void main(String[] args)
 	{
 		SinglyLinkedList sll = new SinglyLinkedList();
-		sll.Insert_at_End(1);
-		sll.Insert_at_End(2);
-		sll.Insert_at_End(3);
-		sll.Insert_at_End(4);
-		
-		sll.Display();
-		sll.Delete_at_Position(5);
-		sll.Display();
-		
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("**************** WELCOME ****************");
+		System.out.println("Enter 1 to Insert Element at End.  ");
+		System.out.println("Enter 2 to Insert Element at Begining. ");
+		System.out.println("Enter 3 to Insert Element at Position. ");
+		System.out.println("Enter 4 to Delete Element at End. ");
+		System.out.println("Enter 5 to Delete Element at Begining. ");
+		System.out.println("Enter 6 to Delete Element at Position. ");
+		System.out.println("Enter 7 to Display the LinledList. ");
+		System.out.println("Enter -1 to EXIT. ");
+
+		int data, ip, pos ;
+
+		while(true)
+		{
+			System.out.print("Enter Input :- ");
+			ip = sc.nextInt();
+			
+			if (ip == 1)
+			{
+				System.out.print("Enter value to Insert at End :- ");
+				data = sc.nextInt();
+				sll.Insert_At_End(data);
+				System.out.println(data+" Inserted at End");
+			}
+			else if (ip == 2)
+			{
+				System.out.print("Enter value to Insert at Begining :- ");
+				data = sc.nextInt();
+				sll.Insert_At_Begin(data);
+				System.out.println(data+" Inserted at Begining");
+			}
+			else if (ip == 3)
+			{
+				System.out.print("Enter value and Position to Insert :- ");
+				data = sc.nextInt();
+				pos = sc.nextInt();
+				sll.Insert_At_Position(data, pos);
+				System.out.println(data+" Inserted at "+pos+" Position");
+			}
+			else if (ip == 4)
+			{
+				sll.Delete_At_End();
+				System.out.println("value Deleted at End");
+			}
+			else if (ip == 5)
+			{
+				sll.Delete_At_Begin();
+				System.out.println("value Deleted at Begin");
+			}
+			else if (ip == 6)
+			{
+				System.out.print("Enter Position to Delete :- ");
+				pos = sc.nextInt();
+				sll.Delete_At_Position(pos);
+				System.out.println("value Deleted at "+pos+" Position");
+			}
+			else if (ip == 7)
+			{
+			    System.out.println("The LinkedList is --- ");
+				sll.Display();
+			}
+			else if (ip == -1)
+			{
+				System.out.println("Program EXIT");
+				break;
+			}
+			
+		}
 	}
 }
