@@ -205,7 +205,6 @@ public class DoublyLinkedList
 			{
 			    System.out.println("The LinkedList is --- ");
 				dll.Display();
-				break;
 			}
 			else if (ip == -1)
 			{
