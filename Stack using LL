@@ -1,76 +1,134 @@
+import java.util.* ;
 class Node 
 {
-    int data ;
+    int data;
     Node next;
     Node(int data)
     {
-        this.data = data ;
-        this.next = null ;
+        this.data = data;
+        this.next = null;
     }
 }
-public class STACK
+public class STACK  
 {
-    Node TOP ;
-    int Count_stack;
-    int size = 3;
+    Node Stack;
+    int SIZE = 3;
+    int count = 0; 
     STACK()
     {
-        this.TOP = null;
-        this.Count_stack = 0;
+        this.Stack = null;
     }
     public void PUSH(int data)
     {
-        Node newnode = new Node(data);
-        if (Count_stack>=size)
+        if (this.IsFull())
         {
-            System.out.println("Stack Overflow");
+            System.out.println("Stack OverFlow");
         }
         else 
         {
-            newnode.next = this.TOP ;
-            this.TOP = newnode ;
-            Count_stack++;
+            Node newnode = new Node(data);
+            newnode.next = this.Stack;
+            this.Stack = newnode;
+            count++;
+            System.out.println(data+" got PUSHED into Stack");
         }
+        
     }
     public void POP()
     {
-        if(this.TOP==null && Count_stack==0)
+        if(this.IsEmpty())
         {
             System.out.println("Stack Underflow");
         }
         else 
         {
-            this.TOP = this.TOP.next ;
-            Count_stack--;
+            System.out.println(this.Stack.data+" POPPED from Stack ");
+            this.Stack = this.Stack.next;
+            count--;
         }
     }
     public void PEEK()
     {
-        if (this.TOP==null && Count_stack==0)
+        if (this.IsEmpty())
         {
-            System.out.println("Stack is Empty");
+            System.out.println("stack is empty");
         }
         else 
         {
-            System.out.println(this.TOP.data);
+            System.out.println("The top of stack is : "+this.Stack.data);
         }
+    }
+    public boolean IsEmpty()
+    {
+        if(count==0)
+            return true;
+        else 
+            return false;
+    }
+    public boolean IsFull()
+    {
+        if(count==SIZE)
+            return true;
+        else 
+            return false;
     }
     public void Display()
     {
-        Node temp = this.TOP ;
+        Node temp=this.Stack;
+        System.out.print("Stack ====> ");
         while(temp!=null)
         {
-            System.out.println(temp+" "+temp.data+" "+temp.next);
-            temp = temp.next ;
+            // System.out.println(temp+" "+temp.data+" "+temp.next);
+            System.out.print(temp.data+" ");
+            temp = temp.next;
         }
+        System.out.println();
     }
 	public static void main(String[] args) 
 	{
-		STACK stk = new STACK();
+	    STACK stk = new STACK();
+	    Scanner sc = new Scanner(System.in);
+	    
+	    System.out.println("*********** WELCOME ***********");
+		System.out.println("Enter 1 to PUSH an Element into Stack. ");
+		System.out.println("Enter 2 to POP an Element from Stack. ");
+		System.out.println("Enter 3 to PEEK into Stack. ");
+		System.out.println("Enter 4 to Display Stack. ");
+		System.out.println("Enter -1 to EXIT");
 		
-		stk.PUSH(1); stk.PUSH(2); stk.PUSH(3); 
-		stk.POP(); stk.POP();stk.POP();
-		stk.PEEK();
-// 		stk.Display();
+		int ip,data;
+		while(true)
+		{
+		    System.out.print("Enter Your Choice : - ");
+		    ip = sc.nextInt();
+		    if(ip==1)
+		    {
+		        System.out.print("Enter data to PUSH into stack : ");
+		        data = sc.nextInt();
+		        stk.PUSH(data);
+		    }
+		    else if (ip==2)
+		    {
+		        stk.POP();
+		    }
+		    else if(ip==3)
+		    {
+		        stk.PEEK();
+		    }
+		    else if (ip==4)
+		    {
+		        stk.Display();
+		    }
+		    else if (ip==-1)
+		    {
+		        System.out.println("PROGRAM EXITED");
+		        break;
+		    }
+		}
 	}
 }
+
+
+
+
+
