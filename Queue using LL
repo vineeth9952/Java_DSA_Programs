@@ -13,8 +13,6 @@ public class  QUEUE
 {
     Node Front;
     Node Rear;
-    int SIZE = 3;
-    int count = 0; 
     QUEUE()
     {
         this.Front = null;
@@ -23,30 +21,22 @@ public class  QUEUE
     public void Enqueue(int data)
     {
         Node newnode = new Node(data);
-        if(this.IsFull())
-        {
-            System.out.println("Queue Overflow");
-        }
-        else if (this.Front==null && this.Rear==null)
+        if (this.Front==null && this.Rear==null)
         {
             this.Front = newnode;
             this.Rear = newnode;
-            count++;
             System.out.println(newnode.data+" was Enqueued to QUEUE");
         }
         else 
         {
             this.Rear.next = newnode;
             this.Rear = newnode;
-            count++:
             System.out.println(newnode.data+" was Enqueued to QUEUE");
         }
-        
-        
     }
     public void Dequeue()
     {
-        if(this.IsEmpty())//(this.Front==null && this.Rear==null)
+        if (this.Front==null && this.Rear==null)
         {
             System.out.println("Queue is Empty");
         }
@@ -64,7 +54,7 @@ public class  QUEUE
     }
     public void PEEK()
     {
-        if (this.IsEmpty())//(this.Front==null && this.Rear==null)
+        if (this.Front==null && this.Rear==null)
         {
             System.out.println("Queue is empty");
         }
@@ -73,20 +63,7 @@ public class  QUEUE
             System.out.println("The Front Element is : "+this.Front.data);
         }
     }
-    public boolean IsEmpty()
-    {
-        if(count==0)
-            return true;
-        else 
-            return false;
-    }
-    public boolean IsFull()
-    {
-        if(count==SIZE)
-            return true;
-        else 
-            return false;
-    }
+    
     public void Display()
     {
         Node temp=this.Front;
