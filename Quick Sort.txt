@@ -4,9 +4,10 @@ public class Main
 {
     public static void quickSort(int[] arr, int low, int high)
     {
-        if (low < high)
+        if(low < high)
         {
             int pi = partition(arr, low, high);
+
             quickSort(arr, low, pi - 1);
             quickSort(arr, pi + 1, high);
         }
@@ -17,11 +18,12 @@ public class Main
         int pivot = arr[high];
         int i = low - 1;
 
-        for (int j = low; j < high; j++)
+        for(int j = low; j < high; j++)
         {
-            if (arr[j] <= pivot)
+            if(arr[j] <= pivot)
             {
                 i++;
+
                 int temp = arr[i];
                 arr[i] = arr[j];
                 arr[j] = temp;
@@ -37,9 +39,21 @@ public class Main
 
     public static void main(String[] args)
     {
-        int[] arr = { 38, 27, 43, 3, 9, 82, 10 };
-        System.out.println("Original Array: " + Arrays.toString(arr));
-        quickSort(arr, 0, arr.length - 1);
-        System.out.println("Sorted Array: " + Arrays.toString(arr));
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+
+        for(int i = 0; i < n; i++)
+        {
+            arr[i] = sc.nextInt();
+        }
+
+        quickSort(arr, 0, n - 1);
+
+        for(int i = 0; i < n; i++)
+        {
+            System.out.print(arr[i] + " ");
+        }
     }
 }
