@@ -21,6 +21,15 @@ public class Tree
         PreOrderTraversal(root.right);
         
     }
+	void PostOrderTraversal(Node root)
+    {
+        if (root == null)
+            return;
+        PostOrderTraversal(root.right);
+        PostOrderTraversal(root.left);
+        System.out.print(root.data+" ");
+        
+    }
     void InOrderTraversal(Node root)
     {
         if (root == null)
@@ -51,7 +60,7 @@ public class Tree
         t1.InOrderTraversal(t1.root);
         
         System.out.print("\nPostOrder Traversal :- ");
-        // t1.PostOrderTraversal(t1.root);
+        t1.PostOrderTraversal(t1.root);
         
 	}
 }
